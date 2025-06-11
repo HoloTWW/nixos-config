@@ -18,7 +18,7 @@
       ];
 
       debug = {
-        disable_logs = true;
+        disable_logs = false;
         enable_stdout_logs = false;
       };
 
@@ -45,7 +45,10 @@
 
         layout = "dwindle";
 
-        no_cursor_warps = false;
+      };
+      
+      cursor = {
+        no_warps = false;
       };
 
       decoration = {
@@ -58,10 +61,12 @@
           new_optimizations = true;
         };
 
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+	shadow = {
+	  enabled = true;
+          range = 4;
+          render_power = 3;
+          color = "rgba(1a1a1aee)";
+	};
       };
 
       animations = {
@@ -86,7 +91,7 @@
       };
 
       master = {
-        new_is_master = true;
+        new_status = "master";
       };
 
       gestures = {
