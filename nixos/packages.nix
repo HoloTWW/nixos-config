@@ -14,6 +14,7 @@
     gparted
     zoom-us
     pcmanfm-qt
+    vscode
 
     # Coding stuff
     gnumake
@@ -27,6 +28,7 @@
     file
     tree
     wget
+    gh
     git
     fastfetch
     htop
