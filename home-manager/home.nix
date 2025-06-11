@@ -1,5 +1,6 @@
-{ configs, pkgs, ... } : {
+{
   imports = [
+    ./zsh.nix
     ./modules/bundle.nix
   ];
 
