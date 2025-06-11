@@ -7,13 +7,18 @@
         position = "top";
         margin = "9 13 -10 18";
 
-        modules-left = ["hyprland/workspaces" "hyprland/language" "keyboard-state" "hyprland/submap"];
+        modules-left = ["hyprland/workspaces" "hyprland/language" "keyboard-state" "hyprland/window" "hyprland/submap"];
         modules-center = ["clock" "custom/weather"];
         modules-right = ["pulseaudio" "custom/mem" "cpu" "backlight" "battery" "tray"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
         };
+
+    "hyprland/window" = {
+        format = "{}";
+        format-icons = {};
+    };
 
     "hyprland/language" = {
         format-en = "US";
@@ -219,10 +224,19 @@ window#waybar.hidden {
     background: #383c4a;
 }
 
+#window {
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px 10px 10px 10px;
+    transition: none;
+    color: #ffffff;
+    background: #383c4a;
+}
+
 #clock {
     padding-left: 16px;
     padding-right: 16px;
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px 10px 10px 10px;
     transition: none;
     color: #ffffff;
     background: #383c4a;
