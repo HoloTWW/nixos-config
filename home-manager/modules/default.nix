@@ -1,7 +1,7 @@
 {
   imports = [
-    ./wms/hyprland.nix
-    ./wms/waybar.nix
+    ./hyprland
+    ./waybar
 
     ./cursor.nix
     ./git.nix
