@@ -25,7 +25,7 @@
       input = {
         kb_layout = "us,ru";
         kb_variant = "lang";
-        kb_options = "grp:caps_toggle";
+        kb_options = "grp:win_space_toggle";
 
         follow_mouse = 1;
 
@@ -61,19 +61,18 @@
           new_optimizations = true;
         };
 
-	shadow = {
-	  enabled = true;
+        shadow = {
+          enabled = true;
           range = 4;
           render_power = 3;
           color = "rgba(1a1a1aee)";
-	};
+	      };
       };
 
       animations = {
         enabled = true;
 
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        # bezier = "myBezier, 0.33, 0.82, 0.9, -0.08";
 
         animation = [
           "windows,     1, 7,  myBezier"
@@ -116,7 +115,7 @@
       ];
 
       exec-once = [
-        "swww init"
+        "swww-daemon"
         "swww img ~/Downloads/nixos-chan.png"
         "waybar"
         "wl-paste --type text --watch cliphist store"
