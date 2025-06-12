@@ -30,7 +30,7 @@
         follow_mouse = 1;
 
         touchpad = {
-          natural_scroll = false;
+          natural_scroll = true;
         };
 
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
@@ -124,14 +124,14 @@
       ];
 
       bind = [
-        "$mainMod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+        # Main Menu
+        "$mainMod, D, exec, pkill rofi || true && rofi -show drun -modi drun, filebrowser,run,window"
 
         "$mainMod, Return, exec, alacritty"
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
-        "$mainMod, E, exec, dolphin"
+        "$mainMod, E, exec, nautilus"
         "$mainMod, F, togglefloating,"
-        "$mainMod, D, exec, wofi --show drun"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, J, togglesplit, # dwindle"
 
