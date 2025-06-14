@@ -6,10 +6,9 @@
 
   environment.systemPackages = with pkgs; [
     # Desktop apps
-    chromium
+    firefox
     alacritty
     rofi
-    wofi
     mpv
     gparted
     zoom-us

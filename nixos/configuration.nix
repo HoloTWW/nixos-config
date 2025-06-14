@@ -8,6 +8,11 @@
       ./modules/bundle.nix
     ];
 
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+
   # Flake
   nix.settings.experimental-features = ["nix-command" "flakes"];
 

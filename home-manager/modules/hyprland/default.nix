@@ -12,25 +12,25 @@
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
-        "XCURSOR_SIZE,36"
+        "XCURSOR_SIZE,24"
         "QT_QPA_PLATFORM,wayland"
         "XDG_SCREENSHOTS_DIR,~/screens"
       ];
 
       debug = {
         disable_logs = false;
-        enable_stdout_logs = true;
+        enable_stdout_logs = false;
       };
 
       input = {
         kb_layout = "us,ru";
         kb_variant = "lang";
-        kb_options = "grp:caps_toggle";
+        kb_options = "grp:win_space_toggle";
 
         follow_mouse = 1;
 
         touchpad = {
-          natural_scroll = false;
+          natural_scroll = true;
         };
 
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
@@ -45,7 +45,10 @@
 
         layout = "dwindle";
 
-        no_cursor_warps = false;
+      };
+      
+      cursor = {
+        no_warps = false;
       };
 
       decoration = {
@@ -58,17 +61,18 @@
           new_optimizations = true;
         };
 
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+          color = "rgba(1a1a1aee)";
+	      };
       };
 
       animations = {
         enabled = true;
 
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        # bezier = "myBezier, 0.33, 0.82, 0.9, -0.08";
 
         animation = [
           "windows,     1, 7,  myBezier"
@@ -86,7 +90,7 @@
       };
 
       master = {
-        new_is_master = true;
+        new_status = "master";
       };
 
       gestures = {
@@ -111,7 +115,7 @@
       ];
 
       exec-once = [
-        "swww init"
+        "swww-daemon"
         "swww img ~/Downloads/nixos-chan.png"
         "waybar"
         "wl-paste --type text --watch cliphist store"
@@ -119,14 +123,14 @@
       ];
 
       bind = [
-        "$mainMod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+        # Main Menu
+        "$mainMod, D, exec, pkill rofi || true && rofi -show drun -modi drun, filebrowser,run,window"
 
         "$mainMod, Return, exec, alacritty"
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
-        "$mainMod, E, exec, dolphin"
+        "$mainMod, E, exec, nautilus"
         "$mainMod, F, togglefloating,"
-        "$mainMod, D, exec, wofi --show drun"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, J, togglesplit, # dwindle"
 

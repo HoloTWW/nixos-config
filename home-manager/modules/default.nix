@@ -1,8 +1,9 @@
 {
   imports = [
-    ./wms/hyprland.nix
-    ./wms/waybar.nix
-
+    ./hyprland
+    ./waybar
+    ./mako
+    
     ./cursor.nix
     ./git.nix
     ./htop.nix

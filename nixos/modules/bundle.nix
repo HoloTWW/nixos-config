@@ -1,6 +1,5 @@
 {
     imports = [
-        ./bootloader.nix
         ./user.nix
         ./sound.nix
         ./hyprland.nix
