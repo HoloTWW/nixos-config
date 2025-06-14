@@ -1,3 +1,4 @@
+{pkgs,...}:
 {
   programs.waybar = {
     enable = true;
@@ -10,7 +11,7 @@
 
         modules-left = ["hyprland/workspaces" "hyprland/language" "keyboard-state" "hyprland/window" "hyprland/submap"];
         modules-center = ["clock" "custom/weather"];
-        modules-right = ["pulseaudio" "custom/mem" "cpu" "backlight" "battery" "tray"];
+        modules-right = ["pulseaudio" "custom/mem" "cpu" "backlight" "battery" "tray" "custom/theme"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -78,6 +79,15 @@
         format = "{} ";
         interval = 3;
         exec = "free -h | awk '/Mem:/{printf $3}'";
+        tooltip = false;
+    };
+
+    "custom/theme" = {
+        format = "{}";
+        exec = "${pkgs.bash}/bin/bash ${./scripts/toggle-theme.sh}";
+        on-click = "${pkgs.bash}/bin/bash ${./scripts/toggle-theme.sh}";
+        interval =  "once";
+        signal = 1;
         tooltip = false;
     };
 
