@@ -130,7 +130,7 @@
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, E, exec, nautilus"
-        "$mainMod, F, togglefloating,"
+        "$mainMod, F, fullscreen,"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, J, togglesplit, # dwindle"
 
