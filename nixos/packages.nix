@@ -14,6 +14,8 @@
     zoom-us
     pcmanfm-qt
     vscode
+    steam
+    obsidian
 
     # Coding stuff
     gnumake
