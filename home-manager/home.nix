@@ -1,6 +1,6 @@
 {config, lib, pkgs, ...}:
 let
-  dotfilesPath = "/home/irykov/nix/home-manager/dotfiles";
+  dotfilesPath = "/home/irykov/nixos-config/home-manager/dotfiles";
 
   files = [
     "quickshell/shell.qml"
