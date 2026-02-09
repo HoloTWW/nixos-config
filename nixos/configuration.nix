@@ -45,6 +45,7 @@
   # sddm
   services.displayManager.sddm = {
     package = pkgs.kdePackages.sddm;
+    wayland.enable = true;
     enable = true;
     # Note: Use "sddm-astronaut-theme", not "sddm-astronaut"
     theme = "sddm-astronaut-theme";
@@ -54,7 +55,9 @@
       pkgs.kdePackages.qtsvg
       pkgs.kdePackages.qt5compat
     ];
-  };  
+  };
+
+  programs.hyprland.enable = true;  
 
   # Configure keymap in X11
   services.xserver.xkb = {
