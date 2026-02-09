@@ -10,8 +10,8 @@
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
 
-  programs.hyprland.enable = true;
-  programs.quickshell.enable = true;
+  # programs.hyprland.enable = true;
+  # programs.quickshell.enable = true;
   
   environment.systemPackages = with pkgs; [
     

@@ -1,7 +1,6 @@
 {
   imports = [
     ./fuzzel
-    ./hyprland
     
     ./alacritty.nix
     ./cursor.nix

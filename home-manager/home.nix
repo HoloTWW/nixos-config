@@ -1,4 +1,4 @@
-{config, lib, pkgs ...}:
+{config, lib, pkgs, ...}:
 let
   dotfilesPath = "/home/irykov/nix/home-manager/dotfiles";
 
@@ -6,6 +6,14 @@ let
     "quickshell/shell.qml"
     "quickshell/bar/Clock.qml"
     "quickshell/bar/Bar.qml"
+    "hypr/hyprland.conf"
+    "hypr/configs/binds.conf"
+    "hypr/configs/env.conf"
+    "hypr/configs/execs.conf"
+    "hypr/configs/input.conf"
+    "hypr/configs/theme.conf"
+    "hypr/configs/windowrules.conf"
+    "hypr/configs/workspaces.conf"
   ];
 in
 {
@@ -18,9 +26,6 @@ in
 
   imports = [
     ./modules
-    ./desktop
-    ./apps
-    ./cli
 
     ./packages.nix
   ];
