@@ -7,6 +7,8 @@
         steam
         obsidian
         libreoffice
+        thunar
+        yandex-music
 
 
         # cli 
