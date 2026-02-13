@@ -25,6 +25,7 @@
     pcmanfm-qt
     gparted
     ntfs3g
+    upower
 
     # tooltip
     gromit-mpx
@@ -86,6 +87,7 @@
     font-awesome
     powerline-fonts
     powerline-symbols
+    nerd-fonts.jetbrains-mono
     nerd-fonts.symbols-only
   ];
 }
