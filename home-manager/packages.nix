@@ -26,6 +26,7 @@
         # viewers
         imv
         mpv
+        gucharmap
 
         # screenshoots
         grim

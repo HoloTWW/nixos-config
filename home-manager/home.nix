@@ -4,8 +4,10 @@ let
 
   files = [
     "quickshell/shell.qml"
-    "quickshell/bar/Clock.qml"
     "quickshell/bar/Bar.qml"
+    "quickshell/bar/Buttom/Buttom.qml"
+    
+
     "hypr/hyprland.conf"
     "hypr/configs/binds.conf"
     "hypr/configs/env.conf"

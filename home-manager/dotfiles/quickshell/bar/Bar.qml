@@ -1,23 +1,31 @@
-import QtQuick
 import Quickshell
+import QtQuick
+import "Bottom"
 
 PanelWindow {
-    anchors {top: true; left: true; right: true}
-    height: 32
-    color: "#383c4a"
+    id: bar
+    // Defines position: left side, full height
+    anchors {
+        left: true
+        top: true
+        bottom: true
+    }
+    
+    implicitWidth: 40 // Set desired width
+    color: "#3a6955" // Set bar color
 
-    Row {
-        anchors.centerIn: parent
-        spacing: 10
-
-        Clock {}
+    
+    Rectangle{
+        anchors.fill: parent
+        color: bar.color
+        
+        Bottom {
+            implicitWidth:bar.width
+        
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 15
+        }
     }
 
-    Row {
-        anchors.left: parent.left
-        anchors.leftMargin: 10
-        anchors.verticalCenter:parent.verticalCenter
-
-        Loader { active: true; sourceComponent: Workspaces {} }
-    }
+    // Add components here (e.g., Workspace, Clock, Taskbar)
 }
