@@ -3,7 +3,11 @@
     enable = true;
     settings = {
       window.opacity = 0.95;
-      dynamic_title = false;
+
+      window = {
+        title = "Alacritty";
+        dynamic_title = false;
+      };
 
       font = {
         size = 13.0;
