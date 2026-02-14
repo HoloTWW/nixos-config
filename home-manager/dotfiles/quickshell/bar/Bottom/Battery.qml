@@ -29,7 +29,7 @@ Rectangle {
         if (p <= 0.7) return "󰂀"
         if (p <= 0.8) return "󰂁"
         if (p <= 0.9) return "󰂂"
-        return "󱈏" // 100% или выше 90
+        return "󱈑" // 100% или выше 90
     }
 
     color: "#453030"

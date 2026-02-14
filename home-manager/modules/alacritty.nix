@@ -3,6 +3,7 @@
     enable = true;
     settings = {
       window.opacity = 0.95;
+      dynamic_title = false;
 
       font = {
         size = 13.0;
