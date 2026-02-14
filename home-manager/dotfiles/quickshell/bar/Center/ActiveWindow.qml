@@ -2,6 +2,8 @@ import Quickshell.Hyprland
 import Quickshell
 import QtQuick
 
+import "../../data" // iconmap
+
 
 
 
@@ -36,35 +38,13 @@ Text {
     function getIcon(title) {
         let name = getAppName(title);
         // Возвращаем иконку из словаря, либо иконку "окна" по умолчанию
-        return iconMap[name] || "  "; 
+        return IconData.getIcon(name); 
     }
 
     readonly property var names: ({
         "code": "VS Code",
         "firefox": "Firefox Browser",
         "foot": "Terminal"
-    })
-
-    readonly property var iconMap: ({
-        "Яндекс Музыка": "",
-        "Yandex Music": "",
-        "Visual Studio Code": " ",
-        "Code": " ",
-        "Mozilla Firefox": "",
-        "Firefox Web Browser": "",
-        "Google Chrome": "",
-        "Brave": "",
-        "Chromium": "",
-        "Helix": "  ", 
-        "Foot": "",
-        "Alacritty": "",
-        "Kitty": "",
-        "Telegram": "",
-        "Discord": "  ",
-        "Spotify": "",
-        "GIMP": "",
-        "Inkscape": "",
-        "Obsidian": "  "
     })
     
 
