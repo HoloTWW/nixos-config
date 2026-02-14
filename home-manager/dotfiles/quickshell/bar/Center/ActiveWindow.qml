@@ -23,6 +23,16 @@ Text {
         return parts[parts.length - 1].trim();
     }
 
+    NumberAnimation on opacity {
+        id: fadeAnim
+        from: 0
+        to: 1
+        duration: 500 // Длительность в мс
+        easing.type: Easing.InOutQuad
+    }
+
+    onTextChanged: fadeAnim.restart()
+
     function getIcon(title) {
         let name = getAppName(title);
         // Возвращаем иконку из словаря, либо иконку "окна" по умолчанию
@@ -36,6 +46,8 @@ Text {
     })
 
     readonly property var iconMap: ({
+        "Яндекс Музыка": "",
+        "Yandex Music": "",
         "Visual Studio Code": " ",
         "Code": " ",
         "Mozilla Firefox": "",
