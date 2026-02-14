@@ -8,7 +8,7 @@
             font = "JetBrainsMono Nerd Font:size=12";
             icon-theme = "Papirus-Dark";
             placeholder = "'ll find them all...";
-            terminal = "alacrity";
+            terminal = "alacritty -e";
             prompt = "\"❯ \"";
             layer = "top";
             anchor = "center";
