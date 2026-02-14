@@ -13,17 +13,12 @@ Text {
 
     readonly property var win: Hyprland.activeToplevel
 
-    text:  getIcon(win?.title) + " " + getAppName(win?.title)
-    //text: "Test Title"
+    readonly property var title: IconData.getAppName(win?.title)
+
+    text:  IconData.getIcon(title) + " " + title
+
     color: "#ffffff"
     anchors.centerIn:parent
-
-    function getAppName(title) {
-        if (!title) return "Desktop";
-        
-        let parts = title.split(/ [—|-] /);
-        return parts[parts.length - 1].trim();
-    }
 
     NumberAnimation on opacity {
         id: fadeAnim
@@ -34,18 +29,6 @@ Text {
     }
 
     onTextChanged: fadeAnim.restart()
-
-    function getIcon(title) {
-        let name = getAppName(title);
-        // Возвращаем иконку из словаря, либо иконку "окна" по умолчанию
-        return IconData.getIcon(name); 
-    }
-
-    readonly property var names: ({
-        "code": "VS Code",
-        "firefox": "Firefox Browser",
-        "foot": "Terminal"
-    })
     
 
     font {

@@ -25,6 +25,13 @@ QtObject {
         "Obsidian": "󰠮"
     })
 
+    function getAppName(title) {
+        if (!title) return "Desktop";
+        
+        let parts = title.split(/ [—|-] /);
+        return parts[parts.length - 1].trim();
+    }
+
     function getIcon(name){
         return icons[name] || " "
     }
