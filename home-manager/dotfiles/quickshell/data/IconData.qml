@@ -41,6 +41,6 @@ QtObject {
     }
 
     function getIcon(name){
-        return icons[name] || " "
+        return icons[name] || "󰡯"
     }
 }

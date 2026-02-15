@@ -6,7 +6,7 @@ import Quickshell.Hyprland
 import "../../data" // iconmap
 
 ColumnLayout {
-    spacing: 5
+    spacing: 6
 
     Repeater {
         model: [...Hyprland.workspaces.values].sort((a, b) => a.id - b.id)
