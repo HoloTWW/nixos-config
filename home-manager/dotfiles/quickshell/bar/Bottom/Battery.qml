@@ -36,7 +36,6 @@ Rectangle {
         return icons[Math.min(Math.max(index, 0), icons.length - 1)]
     }
 
-    color: "#453030"
     implicitHeight: batteryText.height + 10
     implicitWidth: parent.width - 1
 

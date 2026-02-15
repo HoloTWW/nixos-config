@@ -2,8 +2,9 @@ import Quickshell
 import QtQuick
 import "Above"
 import "Center"
-import "Bottom"
+import "Bottom" 
 
+import "../config" 
 
 PanelWindow {
     id: bar
@@ -15,17 +16,22 @@ PanelWindow {
     }
     
     implicitWidth: 40// Set desired width
-    color: "#3a6955" // Set bar color
+    color: Config.primaryColor
 
     
     Rectangle{
         anchors.fill: parent
         color: bar.color
-        
 
+        Rectangle {
+            implicitWidth: bar.width
+        }
+        
         Above {
+            implicitWidth:bar.width
+            anchors.top: parent.top 
+            anchors.topMargin: 15
             
-            anchors.bottomMargin: 15
         }
 
         Center {

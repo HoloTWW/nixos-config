@@ -3,7 +3,7 @@ import Quickshell
 import QtQuick
 
 import "../../data" // iconmap
-
+import "../../config"
 
 
 
@@ -17,7 +17,7 @@ Text {
 
     text:  IconData.getIcon(title) + " " + title
 
-    color: "#ffffff"
+    color: Config.primaryText
     anchors.centerIn:parent
 
     NumberAnimation on opacity {

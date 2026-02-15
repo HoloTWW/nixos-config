@@ -1,6 +1,8 @@
 import QtQuick
 import Quickshell
 
+import "../../config"
+
 Rectangle {
     id: clockWrapper
     implicitWidth: parent.width - 1
@@ -14,14 +16,14 @@ Rectangle {
         Text {
             id: hoursText
             text: Qt.formatDateTime(sysClock.date, "HH")
-            color: "#ffffff"
+            color: Config.primaryText
             font { family: "JetBrains Mono"; pixelSize: 16; weight: Font.Bold; letterSpacing: 1 }
         }
 
         Text {
             id: minutesText
             text: Qt.formatDateTime(sysClock.date, "mm")
-            color: "#ffffff"
+            color: Config.primaryText
             font { family: "JetBrains Mono"; pixelSize: 16; weight: Font.Bold; letterSpacing: 1 }
 
             // Анимация при изменении текста
