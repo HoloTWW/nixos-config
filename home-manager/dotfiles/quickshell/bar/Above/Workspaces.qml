@@ -3,40 +3,26 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
 
-RowLayout {
-    spacing: 10
+import "../../data" // iconmap
 
-    // Маппинг классов окон на иконки Nerd Fonts
-    readonly property var iconMap: {
-        "firefox": "  ",
-        "kitty": "  ",
-        "code": "  ",
-        "thunar": "  ",
-        "discord": "  ",
-        "spotify": "  ",
-        "default": "  "
-    }
-
-    function getIcon(clientClass) {
-        let cls = clientClass.toLowerCase();
-        return iconMap[cls] || iconMap["default"];
-    }
+ColumnLayout {
+    spacing: 5
 
     Repeater {
-        // Берем список воркспейсов (сортируем по ID)
-        model: Hyprland.workspaces.values.sort((a, b) => a.id - b.id)
+        model: [...Hyprland.workspaces.values].sort((a, b) => a.id - b.id)
 
         Workspace {
-            property var wsId: modelData.id
-            id: wsId
+            id: ws
+            wsId: modelData.id 
             active: Hyprland.focusedWorkspace === modelData
             
-            // Фильтруем окна, которые принадлежат этому воркспейсу
+            // Передаем массив иконок напрямую в алиас модели репитера
             icons: {
                 let list = [];
-                for (let client of Hyprland.clients.values) {
+                for (let client of Hyprland.toplevels.values) {
                     if (client.workspace === modelData) {
-                        list.push(getIcon(client.class));
+                        let title = IconData.getAppName(client.title);
+                        list.push(IconData.getIcon(title));
                     }
                 }
                 return list;

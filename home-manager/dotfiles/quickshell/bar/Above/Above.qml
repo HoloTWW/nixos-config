@@ -9,8 +9,7 @@ Rectangle {
     
     Column {
         id:layout
-        anchors.horizontalCenter: parent.horizontalCenter
-        
+
         Workspaces {}
         
     }

@@ -3,46 +3,50 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
 
-Rectangle {
-    property var icons: []
-    property bool active: false
-    property int id: 0
+import "../../config"
 
-    implicitWidth: layout.implicitWidth + 20
-    implicitHeight: 40
+Rectangle {
+    property alias icons: iconRepeater.model 
+    property bool active: false
+    property int wsId: 0  
+
+    implicitWidth: 40
+    
+    implicitHeight: layout.implicitHeight + 5
     radius: 5
     
-    // Выделяем серым, если воркспейс активен
-    color: active ? "#444444" : "transparent"
-    
-    border.color: "#666666"
+    color: active ? Config.focusedColor : Config.unfocusedColor 
+    border.color: "transparent"
     border.width: 1
 
-    RowLayout {
+    ColumnLayout {
         id: layout
-        anchors.centerIn: parent
-        spacing: 8
+        anchors.top: parent.top
+        anchors.topMargin: 2 
+        anchors.left: parent.left
+        anchors.right: parent.right
+        
+        
+        spacing: 5
 
         Repeater {
-            model: icons
+            id: iconRepeater
+            
             Text {
+                
                 text: modelData
-                color: "white"
-                font.family: "Icons" // Название вашего шрифта с Nerd Fonts
+                color: "#ffffff" 
+                font.family: "Symbols Nerd Font" 
                 font.pixelSize: 18
+                
+                Layout.alignment: Qt.AlignHCenter
+                 
             }
-        }
-        
-        // Если окон нет, можно показать номер воркспейса
-        Text {
-            visible: icons.length === 0
-            text: id
-            color: "#888888"
         }
     }
 
     MouseArea {
         anchors.fill: parent
-        onClicked: Hyprland.dispatch(`workspace ${id}`)
+        onClicked: Hyprland.dispatch(`workspace ${wsId}`)
     }
 }
