@@ -29,7 +29,8 @@ QtObject {
 
     readonly property var ruNames: ({
         "Яндекс Музыка": "Yandex Music",
-        "yandex-music": "Yandex Music"
+        "yandex-music": "Yandex Music",
+        "собираем музыку для вас": "Yandex Music"
     })
 
     function getAppName(title) {
