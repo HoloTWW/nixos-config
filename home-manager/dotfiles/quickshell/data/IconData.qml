@@ -25,11 +25,19 @@ QtObject {
         "Obsidian": "󰠮"
     })
 
+    // idk why this stuff install with only russian title 
+
+    readonly property var ruNames: ({
+        "Яндекс Музыка": "Yandex Music"
+    })
+
     function getAppName(title) {
         if (!title) return "Desktop";
         
         let parts = title.split(/ [—|-] /);
-        return parts[parts.length - 1].trim();
+        let line = parts[parts.length - 1].trim();
+
+        return ruNames[line] || line;
     }
 
     function getIcon(name){
