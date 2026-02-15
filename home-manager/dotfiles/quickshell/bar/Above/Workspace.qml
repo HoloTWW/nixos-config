@@ -34,8 +34,8 @@ Rectangle {
             
             Text {
                 
-                text: modelData
-                color: Config.primaryText 
+                text: modelData.icon
+                color: modelData.active ? Config.activeText : Config.primaryText 
                 font.family: "Symbols Nerd Font" 
                 font.pixelSize: 18
                 

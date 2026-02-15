@@ -22,7 +22,11 @@ ColumnLayout {
                 for (let client of Hyprland.toplevels.values) {
                     if (client.workspace === modelData) {
                         let title = IconData.getAppName(client.title);
-                        list.push(IconData.getIcon(title));
+                        list.push({
+                            "icon": IconData.getIcon(title),
+                            // Проверка: является ли это окно активным в данный момент
+                            "active": Hyprland.activeToplevel === client
+                        });
                     }
                 }
                 return list;
