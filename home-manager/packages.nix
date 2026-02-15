@@ -10,6 +10,9 @@
         thunar
         yandex-music
 
+        #hyprstuff
+        hyprshot
+
 
         # cli 
         fastfetch # yes...
