@@ -28,7 +28,8 @@ QtObject {
     // idk why this stuff install with only russian title 
 
     readonly property var ruNames: ({
-        "Яндекс Музыка": "Yandex Music"
+        "Яндекс Музыка": "Yandex Music",
+        "yandex-music": "Yandex Music"
     })
 
     function getAppName(title) {
