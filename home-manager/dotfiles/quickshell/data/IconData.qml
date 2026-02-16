@@ -22,7 +22,8 @@ QtObject {
         "Spotify": "",
         "GIMP": "",
         "Inkscape": "",
-        "Obsidian": "󰠮"
+        "Obsidian": "󰠮",
+        "empty_workspace": ""
     })
 
     // idk why this stuff install with only russian title 
@@ -30,6 +31,7 @@ QtObject {
     readonly property var ruNames: ({
         "Яндекс Музыка": "Yandex Music",
         "yandex-music": "Yandex Music",
+        "firefox" : "Firefox",
         "собираем музыку для вас": "Yandex Music"
     })
 
