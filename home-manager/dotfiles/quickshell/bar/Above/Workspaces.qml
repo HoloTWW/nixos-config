@@ -28,14 +28,13 @@ ColumnLayout {
                         });
                     }
                 }
-                
+
                 if (list.length <= 0){
                     list.push({
                             "icon": IconData.getIcon("empty_workspace"),
                             "active": true
                         });
                 }
-                console.log(list[0])
                 return list;
             }
         }

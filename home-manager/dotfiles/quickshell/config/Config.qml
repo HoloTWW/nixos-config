@@ -7,5 +7,9 @@ QtObject {
     readonly property var focusedColor: "#4a856d"
 
     readonly property var primaryText: "#ffffff"
-    readonly property color activeText: "#80ffcf" 
+    readonly property var activeText: "#80ffcf"
+    
+    readonly property var barVerticalMargin: 15
+    readonly property var barWidth: 40
+    readonly property var frameSize: 10  
 }

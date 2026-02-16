@@ -3,48 +3,57 @@ import QtQuick
 import "Above"
 import "Center"
 import "Bottom" 
-
 import "../config" 
 
 PanelWindow {
     id: bar
-    // Defines position: left side, full height
+    
+    property int verticalMargin: 20
+    property int cornerRadius: 12
+    property color backgroundColor: Config.primaryColor
+
     anchors {
         left: true
         top: true
         bottom: true
     }
     
-    implicitWidth: 40// Set desired width
-    color: Config.primaryColor
+    implicitWidth: 40
+    color: "transparent" 
 
-    
-    Rectangle{
-        anchors.fill: parent
-        color: bar.color
-
-        Rectangle {
-            implicitWidth: bar.width
+    Rectangle {
+        id: background
+        color: bar.backgroundColor
+        radius: bar.cornerRadius
+        
+        anchors {
+            fill: parent
+            topMargin: bar.verticalMargin
+            bottomMargin: bar.verticalMargin
         }
         
+        Rectangle {
+            anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
+            width: parent.radius
+            color: parent.color
+            visible: parent.radius > 0
+        }
+
         Above {
-            implicitWidth:bar.width
+            width: parent.width
             anchors.top: parent.top 
             anchors.topMargin: 15
-            
         }
 
         Center {
-            implicitWidth:bar.width
+            width: parent.width
+            anchors.centerIn: parent
         }
         
         Bottom {
-            implicitWidth:bar.width
-        
+            width: parent.width
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 15
         }
     }
-
-    // Add components here (e.g., Workspace, Clock, Taskbar)
 }

@@ -1,8 +1,17 @@
 import Quickshell
+import QtQuick
+
 import "bar"
+import "config"
 
 ShellRoot {
     id: root
 
-     LazyLoader{ active: true; component: Bar{} }
+    Bar { 
+        id: lBar; 
+        implicitWidth: Config.barWidth; 
+        verticalMargin: Config.barVerticalMargin; 
+        cornerRadius: 20 
+    }
+
 }
