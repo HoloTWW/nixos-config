@@ -25,6 +25,7 @@
 
         # wallpaper daemon 
         swww
+        matugen
 
         # viewers
         imv
