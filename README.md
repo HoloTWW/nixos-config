@@ -10,12 +10,11 @@
 
 
 ## System Requirements
-- NixOS 24.11
-- <strong>NO NVIDIA CARD</strong>
+- NixOS Unstable (last reverse support is 25.11)
 
 ## Clear Install
 
-1. Install NixOS 24.11 
+1. Install NixOS  
 (I recomend you to install with GUI to easy setup wifi (if u have laptop))
 
 2. Pre-install git
@@ -25,20 +24,21 @@ nix-shell -p git
 
 3. Clone this repo
 ```bash
-# it will be there: ~/nix/
+# it will be there: ~/nixos-config/
 git clone https://github.com/HoloTWW/nixos-config.git nix
 ```
 
 4. Copy your hardware-configuration
 ```bash
-cp /etc/nixos/hardware-configuration ~nix/nixos
+cp /etc/nixos/hardware-configuration ~nixos-config/nixos
 ```
 
 5. Rebuild system and home-manager
 ```bash
+cd nixos-config
 sudo nixos-rebuild switch --flake .
 home-manager switch --flake .
-```  
+```   
 
 > [!WARNING]
 >
