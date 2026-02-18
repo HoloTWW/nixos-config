@@ -9,7 +9,7 @@ PanelWindow {
     id: bar
     
     property int verticalMargin: 20
-    property int cornerRadius: 12
+    property int cornerRadius: Config.cornerRadius
     property color backgroundColor: Config.primaryColor
 
     anchors {

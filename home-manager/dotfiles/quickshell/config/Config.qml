@@ -11,5 +11,9 @@ QtObject {
     
     readonly property var barVerticalMargin: 15
     readonly property var barWidth: 40
-    readonly property var frameSize: 10  
+    readonly property var frameSize: 10
+
+    readonly property var cornerRadius: 10
+
+    readonly property var verticalMargin: 2 
 }

@@ -3,6 +3,7 @@ import QtQuick
 
 import "bar"
 import "config"
+import "menu"
 
 ShellRoot {
     id: root
@@ -13,5 +14,7 @@ ShellRoot {
         verticalMargin: Config.barVerticalMargin; 
         cornerRadius: 20 
     }
+
+    BottomMenu {}
 
 }
