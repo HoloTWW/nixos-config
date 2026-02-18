@@ -22,12 +22,15 @@ PanelWindow {
         target: "menu_wallpaper"
         
         function toggleWallpaper(){
+            console.log("ipc")
             toplevel.wallpaperActive = !toplevel.wallpaperActive
+            console.log(toplevel.wallpaperActive)
         }
     }
 
     WallpaperMenu {
         active: toplevel.wallpaperActive
+        onCloseRequested: {toplevel.wallpaperActive = false;}
         anchor.rect.x: parentWindow.width / 2 - width / 2
         anchor.window: toplevel
     }
