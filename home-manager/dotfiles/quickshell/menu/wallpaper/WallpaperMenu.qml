@@ -23,6 +23,12 @@ PopupWindow {
         id: grab
         windows: [ root ]
         active: root.active 
+
+        onActiveChanged: {
+            if (!active) {
+                root.closeRequested();
+            }
+        }
     }
 
     Process {
@@ -88,6 +94,7 @@ PopupWindow {
             radius: Config.cornerRadius
             
             y: root.active ? 0 : root.height
+
             Behavior on y {
                 NumberAnimation { duration: 300; easing.type: Easing.OutCubic }
             }

@@ -22,9 +22,7 @@ PanelWindow {
         target: "menu_wallpaper"
         
         function toggleWallpaper(){
-            console.log("ipc")
             toplevel.wallpaperActive = !toplevel.wallpaperActive
-            console.log(toplevel.wallpaperActive)
         }
     }
 

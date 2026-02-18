@@ -3,6 +3,8 @@ import Quickshell
 import Quickshell.Widgets
 import Qt.labs.folderlistmodel // Добавьте этот импорт
 
+import "../../config"
+
 // Внутри menuBody заменяем старый PathView на этот:
 PathView {
     id: carousel
@@ -32,11 +34,10 @@ PathView {
 
     delegate: Item {
         id: wrapper
-        // Задаем фиксированный размер "рамки"
+
         width: 200 
-        height: 200
+        height: parent.height * 0.90
         
-        // Эффекты масштаба для карусели
         scale: PathView.isCurrentItem ? 1.2 : 0.8
         opacity: PathView.isCurrentItem ? 1.0 : 0.5
         z: PathView.isCurrentItem ? 10 : 1
@@ -51,15 +52,11 @@ PathView {
                 id: img
                 anchors.fill: parent
                 
-                // МАГИЯ ОБРЕЗКИ:
-                // Картинка заполнит весь квадрат 200x200, 
-                // сохранит пропорции и обрежет лишнее по бокам или сверху/снизу.
                 fillMode: Image.PreserveAspectCrop
                 
                 source: fileUrl
-                asynchronous: true // Чтобы не фризило при загрузке
+                asynchronous: true
                 
-                // Центрирование обрезки (по умолчанию по центру, но можно уточнить)
                 horizontalAlignment: Image.AlignHCenter
                 verticalAlignment: Image.AlignVCenter
             }   
