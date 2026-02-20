@@ -49,12 +49,18 @@
     enable = true;
     # Note: Use "sddm-astronaut-theme", not "sddm-astronaut"
     theme = "sddm-astronaut-theme";
+    autoLogin.relogin = false;
     # Necessary for the theme's graphics/animations
     extraPackages = [ 
       pkgs.kdePackages.qtmultimedia 
       pkgs.kdePackages.qtsvg
       pkgs.kdePackages.qt5compat
     ];
+  };
+  
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "irykov";
   };
 
   programs.hyprland.enable = true;  
@@ -64,6 +70,7 @@
     layout = "us";
     variant = "";
   };
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
