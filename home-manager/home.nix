@@ -9,6 +9,7 @@ let
     
 
     "hypr/hyprland.conf"
+    "hypr/hyprlock.conf"
     "hypr/configs/binds.conf"
     "hypr/configs/env.conf"
     "hypr/configs/execs.conf"

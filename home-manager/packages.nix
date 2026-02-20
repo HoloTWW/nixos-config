@@ -12,6 +12,7 @@
 
         #hyprstuff
         hyprshot
+        hyprlock
 
 
         # cli 
