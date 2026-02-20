@@ -44,24 +44,35 @@
 
   # sddm
   services.displayManager.sddm = {
-    package = pkgs.kdePackages.sddm;
-    wayland.enable = true;
     enable = true;
-    # Note: Use "sddm-astronaut-theme", not "sddm-astronaut"
-    theme = "sddm-astronaut-theme";
+    theme = "pixie";
     autoLogin.relogin = false;
-    # Necessary for the theme's graphics/animations
-    extraPackages = [ 
-      pkgs.kdePackages.qtmultimedia 
-      pkgs.kdePackages.qtsvg
-      pkgs.kdePackages.qt5compat
-    ];
+    
   };
-  
+
   services.displayManager.autoLogin = {
     enable = true;
     user = "irykov";
   };
+  
+  environment.systemPackages = [
+    (pkgs.stdenv.mkDerivation {
+      name = "pixie-sddm";
+      src = pkgs.fetchFromGitHub {
+        owner = "xCaptaiN09";
+        repo = "pixie-sddm";
+        rev = "main";
+        sha256 = "sha256-Tm7kvO+b0/JG12v4dAarl3/xXlHAJ38o8GcLFXGxr1U=";
+      };
+      installPhase = ''
+        mkdir -p $out/share/sddm/themes/pixie
+        cp -r * $out/share/sddm/themes/pixie/
+      '';
+    })
+    pkgs.kdePackages.qtdeclarative
+    pkgs.kdePackages.qtsvg
+  ];
+  
 
   programs.hyprland.enable = true;  
 
