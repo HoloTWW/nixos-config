@@ -8,6 +8,11 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    pixie-sddm = {
+      url = "github:xCaptaiN09/pixie-sddm";
+      flake = false; # just theme not nix project
+    }
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

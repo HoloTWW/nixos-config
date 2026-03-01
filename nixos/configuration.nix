@@ -58,19 +58,12 @@
   environment.systemPackages = [
     (pkgs.stdenv.mkDerivation {
       name = "pixie-sddm";
-      src = pkgs.fetchFromGitHub {
-        owner = "xCaptaiN09";
-        repo = "pixie-sddm";
-        rev = "main";
-        sha256 = "sha256-Tm7kvO+b0/JG12v4dAarl3/xXlHAJ38o8GcLFXGxr1U=";
-      };
+      src = inputs.pixie-sddm;
       installPhase = ''
         mkdir -p $out/share/sddm/themes/pixie
         cp -r * $out/share/sddm/themes/pixie/
       '';
     })
-    pkgs.kdePackages.qtdeclarative
-    pkgs.kdePackages.qtsvg
   ];
   
 
@@ -89,7 +82,22 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  
+
+  # Enable hdd visor
+  services.udisks2.enable = true;
+  security.polkit.enable = true;
+  services.gvfs.enable = true;
+
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if ((action.id == "org.freedesktop.udisks2.filesystem-mount-system" ||
+          action.id == "org.freedesktop.udisks2.filesystem-mount") &&
+          subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
+
   system.stateVersion = "25.11"; # Don`t change it plz
 
 }
