@@ -1,3 +1,4 @@
+{config,...}:
 {
   # Turn On OpenGL
   hardware.graphics.enable = true;

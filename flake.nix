@@ -12,7 +12,7 @@
     pixie-sddm = {
       url = "github:xCaptaiN09/pixie-sddm";
       flake = false; # just theme not nix project
-    }
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
