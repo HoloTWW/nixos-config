@@ -16,6 +16,16 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ 
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk 
+    ];
+    config.common.default = [ "hyprland" "gtk" ];
+    config.hyprland.default = [ "hyprland" "gtk" ];
+  };
+
 
   # Flake
   nix.settings.experimental-features = ["nix-command" "flakes"];
