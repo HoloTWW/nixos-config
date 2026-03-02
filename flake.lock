@@ -37,10 +37,27 @@
         "type": "github"
       }
     },
+    "pixie-sddm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771570500,
+        "narHash": "sha256-lmE/49ySuAZDh5xLochWqfSw9qWrIV+fYaK5T2Ckck8=",
+        "owner": "xCaptaiN09",
+        "repo": "pixie-sddm",
+        "rev": "12a5f459ebd6d699be42c188c10976c8bb7076d7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xCaptaiN09",
+        "repo": "pixie-sddm",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "pixie-sddm": "pixie-sddm"
       }
     }
   },
