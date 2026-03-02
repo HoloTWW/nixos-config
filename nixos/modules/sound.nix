@@ -6,7 +6,7 @@
   ];
 
   # disble to avoid conflicts
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   services.pipewire = {

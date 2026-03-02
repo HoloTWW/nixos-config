@@ -8,5 +8,6 @@
         ./nvidia.nix
         ./sound.nix
         ./user.nix
+        ./zapret.nix
     ];
 }

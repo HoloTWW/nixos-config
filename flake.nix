@@ -13,6 +13,11 @@
       url = "github:xCaptaiN09/pixie-sddm";
       flake = false; # just theme not nix project
     };
+
+    zapret = {
+      url = "github:kartavkun/zapret-discord-youtube";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
