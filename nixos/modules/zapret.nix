@@ -7,9 +7,10 @@ in
   options.modules.zapret.enable = mkEnableOption "Enable zapret";
 
   config = mkIf cfg.enable {
+    # Используем кавычки для имени опции, чтобы Nix не путал её с системным config
     services.zapret-discord-youtube = {
       enable = true;
-      config = "general(ALT7)";
+      "config" = "general(ALT1)"; 
     };
   };
 }

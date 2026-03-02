@@ -20,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, zapret, ... }@inputs:
     let 
       system = "x86_64-linux";
     in {
@@ -28,7 +28,10 @@
         inherit system;
         
         specialArgs = { inherit inputs; };
-        modules = [ ./nixos/configuration.nix ];
+        modules = [ 
+          ./nixos/configuration.nix
+          zapret.nixosModules.default 
+          ];
       };
 
       homeConfigurations.irykov = home-manager.lib.homeManagerConfiguration {
