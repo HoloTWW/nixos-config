@@ -66,6 +66,7 @@
     quickshell
     xdg-desktop-portal-hyprland
     seatd
+    jq
 
     # big boy
     home-manager

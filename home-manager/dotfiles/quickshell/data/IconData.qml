@@ -4,8 +4,8 @@ pragma Singleton
 
 QtObject {
     readonly property var icons: ({
-        "Яндекс Музыка": "",
-        "Yandex Music": "",
+        "Яндекс Музыка": "󰎆",
+        "Yandex Music": "󰎆",
         "Visual Studio Code": "",
         "Code": " ",
         "Mozilla Firefox": "",
