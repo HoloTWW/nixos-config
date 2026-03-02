@@ -9,6 +9,7 @@
         libreoffice
         thunar
         yandex-music
+        osu-lazer-bin
 
         #hyprstuff
         hyprshot
@@ -23,6 +24,7 @@
         lux      # download video
         lazygit  # git tui
         cava     # tui audio-v
+        
 
         # wallpaper daemon 
         swww
