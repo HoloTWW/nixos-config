@@ -7,6 +7,10 @@ import "../../config"
 
 Item {
     id: root
+
+    property int leftPadding: 0
+    property int rightPadding: 0
+
     readonly property int maxVisible: 5
     readonly property int spacing: 6
 
@@ -35,10 +39,15 @@ Item {
     Item {
         id: viewContainer
         anchors.fill: parent
+        anchors.leftMargin: root.leftPadding
+        anchors.rightMargin: root.rightPadding
 
         Rectangle {
             id: focusIndicator
-            z: 0; width: 40; radius: 5
+            z: 0; 
+            anchors.left: parent.left
+            anchors.right: parent.right
+            radius: 5
             color: Config.focusedColor
             
             readonly property Item target: {

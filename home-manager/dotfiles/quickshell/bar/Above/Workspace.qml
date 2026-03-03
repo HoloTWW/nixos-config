@@ -10,7 +10,7 @@ Item {
     property bool active: false
     property int wsId: 0  
 
-    implicitWidth: 40
+    width: parent ? parent.width : 40
     implicitHeight: layout.childrenRect.height + 10
     
     Behavior on implicitHeight { 
