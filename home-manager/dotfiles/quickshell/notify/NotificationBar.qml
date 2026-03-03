@@ -7,7 +7,7 @@ PanelWindow {
     
     // Ширина фиксированная, а высота зависит от контента
     width: 350
-    height: notificationStack.implicitHeight + 10 // + отступы
+    height: notificationStack.implicitHeight + 30 // + отступы
     
     anchors.right: true
     anchors.top: true

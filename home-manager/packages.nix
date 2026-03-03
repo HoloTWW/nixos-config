@@ -10,6 +10,7 @@
         thunar
         yandex-music
         osu-lazer-bin
+        telegram-desktop
 
         #hyprstuff
         hyprshot
@@ -35,9 +36,14 @@
         mpv
         gucharmap
 
-        # screenshoots
-        grim
+        # notify
+        libnotify
+
+        # screencapture
+        wf-recorder
+        ffmpeg
         grimblast
+        grim
         slurp
         swappy
 

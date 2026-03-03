@@ -17,6 +17,8 @@ let
     "hypr/configs/theme.conf"
     "hypr/configs/windowrules.conf"
     "hypr/configs/workspaces.conf"
+
+    "hypr/scripts/record-gif.sh"
   ];
 in
 {
