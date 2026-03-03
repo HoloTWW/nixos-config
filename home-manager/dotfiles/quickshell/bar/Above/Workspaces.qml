@@ -11,7 +11,6 @@ Item {
 
     implicitWidth: 40
     
-    // helper to get only workspace objects, ignoring repeater internal items
     function getWorkspaceItems() {
         let items = [];
         for (let i = 0; i < internalLayout.children.length; i++) {
@@ -23,7 +22,6 @@ Item {
         return items;
     }
 
-    // adaptive height: sum of the first 5 visible items
     implicitHeight: {
         let items = getWorkspaceItems();
         if (items.length === 0) return 0;
@@ -36,6 +34,11 @@ Item {
         return h > 0 ? h - root.spacing : 0;
     }
     
+    // Плавное изменение высоты всей панели
+    Behavior on implicitHeight {
+        NumberAnimation { duration: 250; easing.type: Easing.OutCubic }
+    }
+    
     clip: true
 
     ColumnLayout {
@@ -43,21 +46,14 @@ Item {
         spacing: root.spacing
         width: parent.width
 
-        // calculate y offset based on workspace index
         y: {
             let items = root.getWorkspaceItems();
             let focused = Hyprland.focusedWorkspace;
-            
-            // find visual index of focused workspace
             let activeIdx = items.findIndex(item => focused && item.wsId === focused.id);
-            
-            // if index is within first maxvisible, no scroll needed
             if (activeIdx < maxVisible || activeIdx === -1) return 0;
 
-            // shift so active item stays at the bottom of visible area
             let offsetIdx = activeIdx - (maxVisible - 1);
             let scrollY = 0;
-            
             for (let i = 0; i < offsetIdx; i++) {
                 scrollY += items[i].height + internalLayout.spacing;
             }
@@ -72,15 +68,12 @@ Item {
             model: {
                 let all = [...Hyprland.workspaces.values];
                 let focused = Hyprland.focusedWorkspace;
-                
-                // calculate max id to fill gaps between workspaces
                 let maxId = focused ? focused.id : 1;
                 for (let ws of all) if (ws.id > maxId) maxId = ws.id;
 
                 let range = [];
                 for (let i = 1; i <= maxId; i++) {
                     let existing = all.find(w => w.id === i);
-                    // push existing workspace object or a virtual one
                     range.push(existing ? existing : { id: i });
                 }
                 return range;
@@ -101,12 +94,8 @@ Item {
                             });
                         }
                     }
-                    // return space for empty intermediate workspaces
                     if (list.length <= 0) {
-                        list.push({
-                            "icon": " ", 
-                            "active": false 
-                        });
+                        list.push({ "icon": " ", "active": false });
                     }
                     return list;
                 }

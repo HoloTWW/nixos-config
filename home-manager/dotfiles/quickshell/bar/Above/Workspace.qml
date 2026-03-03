@@ -2,45 +2,52 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
-
 import "../../config"
 
 Rectangle {
+    id: workspaceRoot
     property alias icons: iconRepeater.model 
     property bool active: false
     property int wsId: 0  
 
     implicitWidth: 40
     
-    implicitHeight: layout.implicitHeight + 5
-    radius: 5
+    // Вычисляем высоту на основе содержимого + отступы
+    // Использование Behavior делает растяжение/сжатие плавным
+    implicitHeight: layout.childrenRect.height + 10
     
+    Behavior on implicitHeight {
+        NumberAnimation {
+            duration: 250
+            easing.type: Easing.OutCubic
+        }
+    }
+
+    radius: 5
     color: active ? Config.focusedColor : Config.unfocusedColor 
     border.color: "transparent"
     border.width: 1
 
-    ColumnLayout {
+    Column {
         id: layout
-        anchors.top: parent.top
-        anchors.topMargin: 2 
-        anchors.left: parent.left
-        anchors.right: parent.right
-        
-        
+        width: parent.width
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: 5 // Верхний отступ
         spacing: 5
 
         Repeater {
             id: iconRepeater
             
-            Text {
-                
+            delegate: Text {
+                width: parent.width
                 text: modelData.icon
                 color: modelData.active ? Config.activeText : Config.primaryText 
                 font.family: "Symbols Nerd Font" 
                 font.pixelSize: 18
+                horizontalAlignment: Text.AlignHCenter
                 
-                Layout.alignment: Qt.AlignHCenter
-                 
+                // Плавная смена цвета иконки при фокусе
+                Behavior on color { ColorAnimation { duration: 200 } }
             }
         }
     }
