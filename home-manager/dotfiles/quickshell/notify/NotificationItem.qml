@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.Notifications
+import "../config"
 
 Rectangle {
     id: root
@@ -8,10 +9,8 @@ Rectangle {
     
     implicitWidth: 310
     implicitHeight: layout.implicitHeight + 24
-    color: "#1e222a"
+    color: Config.primaryColor
     radius: 12
-    border.color: "#3e4452"
-    border.width: 1
     
     x: 400
     opacity: 0
@@ -48,13 +47,14 @@ Rectangle {
 
         Text {
             text: root.notification?.summary ?? ""
-            color: "white"; font.bold: true; font.pixelSize: 14
+            color: Config.primaryText; font.bold: true; font.pixelSize: 14
             Layout.fillWidth: true; elide: Text.ElideRight
         }
 
         Text {
-            text: root.notification?.body ?? ""
-            color: "#abb2bf"; font.pixelSize: 12
+            text: root.notification?.body ?? " "
+            color: Config.infoText; 
+            font.pixelSize: 12
             wrapMode: Text.WordWrap; Layout.fillWidth: true; maximumLineCount: 4
         }
     }
