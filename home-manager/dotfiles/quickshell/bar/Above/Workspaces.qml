@@ -16,9 +16,7 @@ Item {
         let items = [];
         for (let i = 0; i < internalLayout.children.length; i++) {
             let child = internalLayout.children[i];
-            if (child && child.wsId !== undefined) {
-                items.push(child);
-            }
+            if (child && child.wsId !== undefined) items.push(child);
         }
         return items;
     }
@@ -28,14 +26,8 @@ Item {
         if (items.length === 0) return 0;
         let h = 0;
         let count = Math.min(items.length, maxVisible);
-        for (let i = 0; i < count; i++) {
-            h += items[i].height + root.spacing;
-        }
+        for (let i = 0; i < count; i++) h += items[i].height + root.spacing;
         return h > 0 ? h - root.spacing : 0;
-    }
-    
-    Behavior on implicitHeight {
-        NumberAnimation { duration: 250; easing.type: Easing.OutCubic }
     }
     
     clip: true
@@ -44,64 +36,52 @@ Item {
         id: viewContainer
         anchors.fill: parent
 
-        // spotlight has z: 2, to be above bg, but under icons
         Rectangle {
             id: focusIndicator
-            z: 0 
-            width: 40
-            radius: 5
+            z: 0; width: 40; radius: 5
             color: Config.focusedColor
-
-            function updateTarget() {
-                let items = root.getWorkspaceItems();
-                for (let i = 0; i < items.length; i++) {
-                    if (items[i].active) return items[i];
-                }
-                return null;
-            }
-
-            readonly property Item target: updateTarget()
             
-            property Item activeItem: {
-                let items = root.getWorkspaceItems();
-                for (let i = 0; i < items.length; i++) {
-                    if (items[i].active) return items[i];
+            readonly property Item target: {
+                let children = internalLayout.children;
+                for (let i = 0; i < children.length; i++) {
+                    if (children[i] && children[i].active) return children[i];
                 }
                 return null;
             }
 
             visible: target !== null
-            x: 0
             y: target ? target.y + internalLayout.y : 0
             height: target ? target.height : 0
 
-            Behavior on y { NumberAnimation { duration: 300; easing.type: Easing.OutQuint } }
-            Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.OutQuint } }
+            Behavior on y { NumberAnimation { duration: 250; easing.type: Easing.OutCubic } }
         }
 
         Column {
             id: internalLayout
-            z: 1 // base layer for workspace cell
+            z: 1 
             spacing: root.spacing
             width: parent.width
 
-            y: {
+            readonly property int activeIdx: {
                 let items = root.getWorkspaceItems();
                 let focused = Hyprland.focusedWorkspace;
-                let activeIdx = items.findIndex(item => focused && item.wsId === focused.id);
-                if (activeIdx < maxVisible || activeIdx === -1) return 0;
+                return items.findIndex(item => focused && item.wsId === focused.id);
+            }
 
+            y: {
+                let items = root.getWorkspaceItems();
+                if (activeIdx < maxVisible || activeIdx === -1) return 0;
+                
                 let offsetIdx = activeIdx - (maxVisible - 1);
                 let scrollY = 0;
+
                 for (let i = 0; i < offsetIdx; i++) {
-                    scrollY += items[i].height + internalLayout.spacing;
+                    scrollY += items[i].height + spacing;
                 }
                 return -scrollY;
             }
 
-            Behavior on y {
-                NumberAnimation { duration: 250; easing.type: Easing.OutCubic }
-            }
+            Behavior on y { NumberAnimation { duration: 250; easing.type: Easing.OutCubic } }
 
             Repeater {
                 model: {
@@ -116,11 +96,9 @@ Item {
                     }
                     return range;
                 }
-
                 Workspace {
                     wsId: modelData.id 
                     active: Hyprland.focusedWorkspace && Hyprland.focusedWorkspace.id === modelData.id
-                    
                     icons: {
                         let list = [];
                         for (let client of Hyprland.toplevels.values) {
@@ -132,9 +110,7 @@ Item {
                                 });
                             }
                         }
-                        if (list.length <= 0) {
-                            list.push({ "icon": " ", "active": false });
-                        }
+                        if (list.length <= 0) list.push({ "icon": " ", "active": false });
                         return list;
                     }
                 }
