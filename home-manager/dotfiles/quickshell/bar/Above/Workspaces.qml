@@ -105,21 +105,28 @@ Item {
                     }
                     return range;
                 }
+                
                 Workspace {
                     wsId: modelData.id 
                     active: Hyprland.focusedWorkspace && Hyprland.focusedWorkspace.id === modelData.id
                     icons: {
                         let list = [];
                         for (let client of Hyprland.toplevels.values) {
+                            // Проверяем, принадлежит ли клиент текущему воркспейсу в итерации
                             if (client.workspace && client.workspace.id === modelData.id) {
-                                let title = IconData.getAppName(client.title);
+                                // Передаем в IconData именно текущего КЛИЕНТА из цикла
+                                let data = IconData.getWindowData(client); 
                                 list.push({
-                                    "icon": IconData.getIcon(title),
+                                    "icon": data.icon,
                                     "active": Hyprland.activeToplevel === client
                                 });
                             }
                         }
-                        if (list.length <= 0) list.push({ "icon": " ", "active": false });
+                        // Если окон нет, выводим иконку пустого воркспейса из реестра или просто плюс
+                        if (list.length <= 0) {
+                            let emptyData = IconData.appRegistry["empty_workspace"] || { icon: "" };
+                            list.push({ "icon": emptyData.icon, "active": false });
+                        }
                         return list;
                     }
                 }

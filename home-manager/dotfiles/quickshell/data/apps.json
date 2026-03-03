@@ -1,0 +1,23 @@
+{
+    "yandex-music": { "title": "Yandex Music", "icon": "󰎆" },
+    "code-url-handler": { "title": "VS Code", "icon": "" },
+    "code": { "title": "Code", "icon": "" },
+    "firefox": { "title": "Firefox", "icon": "" },
+    "google-chrome": { "title": "Chrome", "icon": "" },
+    "brave-browser": { "title": "Brave", "icon": "" },
+    "chromium": { "title": "Chromium", "icon": "" },
+    "helix": { "title": "Helix", "icon": "" },
+    "foot": { "title": "Foot", "icon": "" },
+    "alacritty": { "title": "Alacritty", "icon": "" },
+    "kitty": { "title": "Kitty", "icon": "" },
+    "org.telegram.desktop": { "title": "Telegram", "icon": "" },
+    "discord": { "title": "Discord", "icon": "" },
+    "spotify": { "title": "Spotify", "icon": "" },
+    "steam": { "title": "Steam", "icon": "" },
+    "gimp-2.99": { "title": "GIMP", "icon": "" },
+    "org.inkscape.Inkscape": { "title": "Inkscape", "icon": "" },
+    "obsidian": { "title": "Obsidian", "icon": "󰠮" },
+    "pavucontrol": { "title": "Volume Control", "icon": "󰙪" },
+    "thunar":{ "title": "Thunar", "icon": "" },
+    "empty_workspace": { "title": "", "icon": "" }
+}

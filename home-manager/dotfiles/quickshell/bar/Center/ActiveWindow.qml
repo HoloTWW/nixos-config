@@ -11,11 +11,9 @@ import "../../config"
 Text {
     id: activeWindow
 
-    readonly property var win: Hyprland.activeToplevel
+    readonly property var win: IconData.getWindowData(Hyprland.activeToplevel)
 
-    readonly property var title: IconData.getAppName(win?.title)
-
-    text:  IconData.getIcon(title) + " " + title
+    text:  win.icon + " " + win.title
 
     color: Config.primaryText
     anchors.centerIn:parent
