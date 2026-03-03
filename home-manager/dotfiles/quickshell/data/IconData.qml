@@ -51,11 +51,18 @@ QtObject {
         let line = parts[parts.length - 1].trim();
         let result = ruNames[line] || line;
 
-        return result
+        // capitalize
+        let finalName = result
             .split(' ')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
             .join(' ');
+
+        // truncate if still slopstroke
+        return finalName.length > 25 
+            ? finalName.substring(0, 25) + "..." 
+            : finalName;
     }
+
 
 
     function getIcon(name){
