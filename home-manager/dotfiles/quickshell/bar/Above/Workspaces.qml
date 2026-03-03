@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
 import "../../data"
+import "../../config" 
 
 Item {
     id: root
@@ -25,7 +26,6 @@ Item {
     implicitHeight: {
         let items = getWorkspaceItems();
         if (items.length === 0) return 0;
-
         let h = 0;
         let count = Math.min(items.length, maxVisible);
         for (let i = 0; i < count; i++) {
@@ -34,70 +34,109 @@ Item {
         return h > 0 ? h - root.spacing : 0;
     }
     
-    // Плавное изменение высоты всей панели
     Behavior on implicitHeight {
         NumberAnimation { duration: 250; easing.type: Easing.OutCubic }
     }
     
     clip: true
 
-    ColumnLayout {
-        id: internalLayout
-        spacing: root.spacing
-        width: parent.width
+    Item {
+        id: viewContainer
+        anchors.fill: parent
 
-        y: {
-            let items = root.getWorkspaceItems();
-            let focused = Hyprland.focusedWorkspace;
-            let activeIdx = items.findIndex(item => focused && item.wsId === focused.id);
-            if (activeIdx < maxVisible || activeIdx === -1) return 0;
+        // spotlight has z: 2, to be above bg, but under icons
+        Rectangle {
+            id: focusIndicator
+            z: 0 
+            width: 40
+            radius: 5
+            color: Config.focusedColor
 
-            let offsetIdx = activeIdx - (maxVisible - 1);
-            let scrollY = 0;
-            for (let i = 0; i < offsetIdx; i++) {
-                scrollY += items[i].height + internalLayout.spacing;
-            }
-            return -scrollY;
-        }
-
-        Behavior on y {
-            NumberAnimation { duration: 250; easing.type: Easing.OutCubic }
-        }
-
-        Repeater {
-            model: {
-                let all = [...Hyprland.workspaces.values];
-                let focused = Hyprland.focusedWorkspace;
-                let maxId = focused ? focused.id : 1;
-                for (let ws of all) if (ws.id > maxId) maxId = ws.id;
-
-                let range = [];
-                for (let i = 1; i <= maxId; i++) {
-                    let existing = all.find(w => w.id === i);
-                    range.push(existing ? existing : { id: i });
+            function updateTarget() {
+                let items = root.getWorkspaceItems();
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].active) return items[i];
                 }
-                return range;
+                return null;
             }
 
-            Workspace {
-                wsId: modelData.id 
-                active: Hyprland.focusedWorkspace && Hyprland.focusedWorkspace.id === modelData.id
-                
-                icons: {
-                    let list = [];
-                    for (let client of Hyprland.toplevels.values) {
-                        if (client.workspace && client.workspace.id === modelData.id) {
-                            let title = IconData.getAppName(client.title);
-                            list.push({
-                                "icon": IconData.getIcon(title),
-                                "active": Hyprland.activeToplevel === client
-                            });
+            readonly property Item target: updateTarget()
+            
+            property Item activeItem: {
+                let items = root.getWorkspaceItems();
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].active) return items[i];
+                }
+                return null;
+            }
+
+            visible: target !== null
+            x: 0
+            y: target ? target.y + internalLayout.y : 0
+            height: target ? target.height : 0
+
+            Behavior on y { NumberAnimation { duration: 300; easing.type: Easing.OutQuint } }
+            Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.OutQuint } }
+        }
+
+        Column {
+            id: internalLayout
+            z: 1 // base layer for workspace cell
+            spacing: root.spacing
+            width: parent.width
+
+            y: {
+                let items = root.getWorkspaceItems();
+                let focused = Hyprland.focusedWorkspace;
+                let activeIdx = items.findIndex(item => focused && item.wsId === focused.id);
+                if (activeIdx < maxVisible || activeIdx === -1) return 0;
+
+                let offsetIdx = activeIdx - (maxVisible - 1);
+                let scrollY = 0;
+                for (let i = 0; i < offsetIdx; i++) {
+                    scrollY += items[i].height + internalLayout.spacing;
+                }
+                return -scrollY;
+            }
+
+            Behavior on y {
+                NumberAnimation { duration: 250; easing.type: Easing.OutCubic }
+            }
+
+            Repeater {
+                model: {
+                    let all = [...Hyprland.workspaces.values];
+                    let focused = Hyprland.focusedWorkspace;
+                    let maxId = focused ? focused.id : 1;
+                    for (let ws of all) if (ws.id > maxId) maxId = ws.id;
+                    let range = [];
+                    for (let i = 1; i <= maxId; i++) {
+                        let existing = all.find(w => w.id === i);
+                        range.push(existing ? existing : { id: i });
+                    }
+                    return range;
+                }
+
+                Workspace {
+                    wsId: modelData.id 
+                    active: Hyprland.focusedWorkspace && Hyprland.focusedWorkspace.id === modelData.id
+                    
+                    icons: {
+                        let list = [];
+                        for (let client of Hyprland.toplevels.values) {
+                            if (client.workspace && client.workspace.id === modelData.id) {
+                                let title = IconData.getAppName(client.title);
+                                list.push({
+                                    "icon": IconData.getIcon(title),
+                                    "active": Hyprland.activeToplevel === client
+                                });
+                            }
                         }
+                        if (list.length <= 0) {
+                            list.push({ "icon": " ", "active": false });
+                        }
+                        return list;
                     }
-                    if (list.length <= 0) {
-                        list.push({ "icon": " ", "active": false });
-                    }
-                    return list;
                 }
             }
         }

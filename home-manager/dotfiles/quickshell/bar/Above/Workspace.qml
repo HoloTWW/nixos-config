@@ -4,40 +4,38 @@ import Quickshell
 import Quickshell.Hyprland
 import "../../config"
 
-Rectangle {
+Item {
     id: workspaceRoot
     property alias icons: iconRepeater.model 
     property bool active: false
     property int wsId: 0  
 
     implicitWidth: 40
-    
-    // Вычисляем высоту на основе содержимого + отступы
-    // Использование Behavior делает растяжение/сжатие плавным
     implicitHeight: layout.childrenRect.height + 10
     
-    Behavior on implicitHeight {
-        NumberAnimation {
-            duration: 250
-            easing.type: Easing.OutCubic
-        }
+    Behavior on implicitHeight { NumberAnimation { duration: 250; easing.type: Easing.OutCubic } }
+
+    // 1. substrate for unfocusedColor
+    Rectangle {
+        anchors.fill: parent
+        radius: 5
+        color: Config.unfocusedColor
+        opacity: active ? 0 : 1
+        Behavior on opacity { NumberAnimation { duration: 200 } }
     }
 
-    radius: 5
-    color: active ? Config.focusedColor : Config.unfocusedColor 
-    border.color: "transparent"
-    border.width: 1
-
+    // 2. content (icons)
     Column {
         id: layout
         width: parent.width
         anchors.horizontalCenter: parent.horizontalCenter
-        y: 5 // Верхний отступ
+        y: 5
         spacing: 5
+
+        enabled: false 
 
         Repeater {
             id: iconRepeater
-            
             delegate: Text {
                 width: parent.width
                 text: modelData.icon
@@ -45,15 +43,22 @@ Rectangle {
                 font.family: "Symbols Nerd Font" 
                 font.pixelSize: 18
                 horizontalAlignment: Text.AlignHCenter
-                
-                // Плавная смена цвета иконки при фокусе
                 Behavior on color { ColorAnimation { duration: 200 } }
             }
         }
     }
 
+    // 3. click zone
     MouseArea {
         anchors.fill: parent
-        onClicked: Hyprland.dispatch(`workspace ${wsId}`)
+        
+        cursorShape: Qt.PointingHandCursor
+        
+        // switch Hyprland logic
+        onClicked: {
+            if (wsId > 0) {
+                Hyprland.dispatch(`workspace ${wsId}`)
+            }
+        }
     }
 }
