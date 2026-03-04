@@ -20,5 +20,5 @@
     "obsidian": { "title": "Obsidian", "icon": "󰠮" },
     "org.pulseaudio.pavucontrol": { "title": "Volume Control", "icon": "󰙪" },
     "thunar":{ "title": "Thunar", "icon": "" },
-    "empty_workspace": { "title": "", "icon": "" }
+    "empty_workspace": { "title": "", "icon": " " }
 }

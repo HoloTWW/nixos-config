@@ -11,7 +11,7 @@ Item {
     property int leftPadding: 0
     property int rightPadding: 0
 
-    readonly property int maxVisible: 5
+    readonly property int maxVisible: Config.barVisibleWorkspaces
     readonly property int spacing: 6
 
     implicitWidth: 40

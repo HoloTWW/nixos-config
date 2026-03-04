@@ -12,6 +12,7 @@ QtObject {
     readonly property var activeText: "#80ffcf"
     
     readonly property var barVerticalMargin: 15
+    readonly property var barVisibleWorkspaces: 8
     readonly property var barWidth: 40
     readonly property var frameSize: 10
 
