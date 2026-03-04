@@ -29,19 +29,18 @@ QtObject {
 
     // big boss
     function getWindowData(toplevel) {
-        if (!toplevel || !toplevel.wayland) return { "name": "Desktop", "icon": "" };
+        if (!toplevel || !toplevel.wayland) return { "title": "Desktop", "icon": "" };
         
         const appId = toplevel.wayland.appId.toLowerCase();
         
-        // Проверяем наличие в реестре
         if (appRegistry && appRegistry[appId]) {
             return {
-                "name": appRegistry[appId].title,
+                "title": appRegistry[appId].title,
                 "icon": appRegistry[appId].icon
             };
         }
 
-        return { "name": formatTitle(toplevel.title), "icon": "  " };
+        return { "title": formatTitle(toplevel.title), "icon": "  " };
     }
 
     function addApp(appId, title, icon) {
