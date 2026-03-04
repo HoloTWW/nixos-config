@@ -14,10 +14,11 @@
     "discord": { "title": "Discord", "icon": "" },
     "spotify": { "title": "Spotify", "icon": "" },
     "steam": { "title": "Steam", "icon": "" },
-    "gimp-2.99": { "title": "GIMP", "icon": "" },
+    "steam_game": { "title": "Steam Game", "icon": "󰊗" },
+    "gimp": { "title": "GIMP", "icon": "" },
     "org.inkscape.Inkscape": { "title": "Inkscape", "icon": "" },
     "obsidian": { "title": "Obsidian", "icon": "󰠮" },
-    "pavucontrol": { "title": "Volume Control", "icon": "󰙪" },
+    "org.pulseaudio.pavucontrol": { "title": "Volume Control", "icon": "󰙪" },
     "thunar":{ "title": "Thunar", "icon": "" },
     "empty_workspace": { "title": "", "icon": "" }
 }
