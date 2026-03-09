@@ -19,6 +19,7 @@ let
     "hypr/configs/workspaces.conf"
 
     "hypr/scripts/record-gif.sh"
+    "hypr/scripts/toggle-empty.sh"
   ];
 in
 {
