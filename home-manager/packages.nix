@@ -22,6 +22,7 @@
         filebrowser
         ranger   # filemanager
         htop     # taskmanager
+        btop     # better than htop
         lux      # download video
         lazygit  # git tui
         cava     # tui audio-v

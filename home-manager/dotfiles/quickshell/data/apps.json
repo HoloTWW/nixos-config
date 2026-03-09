@@ -20,5 +20,6 @@
     "obsidian": { "title": "Obsidian", "icon": "󰠮" },
     "org.pulseaudio.pavucontrol": { "title": "Volume Control", "icon": "󰙪" },
     "thunar":{ "title": "Thunar", "icon": "" },
+    ".blueman-manager-wrapped":{ "title": "Bluetooth", "icon": "󰂯" },
     "empty_workspace": { "title": "", "icon": " " }
 }

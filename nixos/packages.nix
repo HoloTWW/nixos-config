@@ -9,9 +9,6 @@
     # or specifically for electron apps:
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
-
-  # programs.hyprland.enable = true;
-  # programs.quickshell.enable = true;
   
   environment.systemPackages = with pkgs; [
     
@@ -70,6 +67,7 @@
 
     # big boy
     home-manager
+    protonup-qt
 
     # dependences 
     libsForQt5.qtstyleplugin-kvantum

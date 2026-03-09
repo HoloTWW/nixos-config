@@ -9,8 +9,8 @@ in
   config = mkIf cfg.enable {
     # Используем кавычки для имени опции, чтобы Nix не путал её с системным config
     services.zapret-discord-youtube = {
-      enable = true;
-      "config" = "general(ALT1)"; 
+      enable = false;
+      "config" = "general(ALT9)"; 
     };
   };
 }

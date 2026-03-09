@@ -7,10 +7,6 @@
       ./packages.nix
       ./modules/bundle.nix
     ];
- 
-  # VM legacy
-  #boot.loader.grub.enable = true;
-  #boot.loader.grub.device = "/dev/sda";
 
   # Bootloader UEFI.
   boot.loader.systemd-boot.enable = true;
