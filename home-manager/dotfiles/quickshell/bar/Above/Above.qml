@@ -10,9 +10,9 @@ Rectangle {
     Column {
         id:layout
 
-        Workspaces {
-            leftPadding: 5
-            rightPadding: 5
+        Workspaces { 
+            leftPadding: 5 
+            rightPadding: 5 
         }
         
     }

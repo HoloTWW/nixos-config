@@ -1,6 +1,4 @@
 import QtQuick
-import QtQuick.Layouts
-import Quickshell
 import Quickshell.Hyprland
 import "../../config"
 
@@ -11,37 +9,37 @@ Item {
     property int wsId: 0  
 
     width: parent ? parent.width : 40
-    implicitHeight: layout.childrenRect.height + 10
+    implicitHeight: (icons.length > 0 ? (icons.length * 22) : 22) + 5
     
-    Behavior on implicitHeight { 
-        NumberAnimation { duration: 250; easing.type: Easing.OutCubic } 
-    }
+    Behavior on implicitHeight { NumberAnimation { duration: 200 } }
 
     Rectangle {
-        id: substrate
         anchors.fill: parent
         radius: 5
         color: Config.unfocusedColor
         opacity: active ? 0 : 1
-        Behavior on opacity { NumberAnimation { duration: 200 } }
     }
 
     Column {
-        id: layout
-        width: parent.width
-        anchors.horizontalCenter: parent.horizontalCenter
-        y: 5; spacing: 5
-        enabled: false 
+        anchors.centerIn: parent
+        spacing: 2
+
+        Text {
+            visible: workspaceRoot.icons.length === 0
+            text: " "
+            color: Config.primaryText
+            font.pixelSize: 14
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
 
         Repeater {
             model: workspaceRoot.icons
             delegate: Text {
-                width: parent.width
                 text: modelData.icon
                 color: modelData.active ? Config.activeText : Config.primaryText 
                 font.family: "Symbols Nerd Font" 
                 font.pixelSize: 18
-                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
             }
         }
     }
