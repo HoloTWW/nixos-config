@@ -25,7 +25,7 @@ QtObject {
     }
 
     function getWindowData(toplevel) {
-        if (!toplevel || !toplevel.wayland) return { "title": "Desktop", "icon": "" };
+        if (!toplevel || !toplevel.wayland) return null;
         
         const appId = toplevel.wayland.appId.toLowerCase();
         const rawTitle = toplevel.title || "";

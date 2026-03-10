@@ -15,12 +15,16 @@ QtObject {
             let client = clients[i];
             if (!client || !client.workspace) continue;
 
+            let data = IconData.getWindowData(client);
+            
+
+            if (!data) continue; 
+
             let id = client.workspace.id;
             if (!map[id]) map[id] = [];
 
-            let data = IconData.getWindowData(client);
             map[id].push({
-                "icon": data ? data.icon : "",
+                "icon": data.icon,
                 "active": Hyprland.activeToplevel === client
             });
         }
