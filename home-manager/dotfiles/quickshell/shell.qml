@@ -11,6 +11,8 @@ ShellRoot {
 
     NotificationBar {}
 
+    TopMenu {}
+
 
     Bar { 
         id: lBar; 

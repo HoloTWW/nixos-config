@@ -18,5 +18,5 @@ QtObject {
 
     readonly property var cornerRadius: 10
 
-    readonly property var verticalMargin: 2 
+    readonly property var verticalMargin: 4 
 }
