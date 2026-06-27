@@ -9,6 +9,7 @@ QtObject {
         "Visual Studio Code": "",
         "Code": " ",
         "Mozilla Firefox": "",
+        "Firefox": "",
         "Firefox Web Browser": "",
         "Google Chrome": "",
         "Brave": "",
@@ -23,7 +24,20 @@ QtObject {
         "GIMP": "",
         "Inkscape": "",
         "Obsidian": "󰠮",
-        "empty_workspace": ""
+        "empty_workspace": "",
+        "file_manager":"",
+        "Thunar": "󰝰",
+        "Thunar": "󰝰",
+        "Dolphin": "󰝰",
+        "Files": "󰝰",
+        "Desktop" : " ",
+        "LibreOffice Base": "",
+        "LibreOffice Calc":"",
+        "LibreOffice Draw":"",
+        "LibreOffice Impress":"",
+        "LibreOffice Math":"",
+        "LibreOffice Writer":""
+
     })
 
     // idk why this stuff install with only russian title 
@@ -32,7 +46,8 @@ QtObject {
         "Яндекс Музыка": "Yandex Music",
         "yandex-music": "Yandex Music",
         "firefox" : "Firefox",
-        "собираем музыку для вас": "Yandex Music"
+        "собираем музыку для вас": "Yandex Music",
+        "thunar" : "Thunar"
     })
 
     function getAppName(title) {

@@ -10,6 +10,8 @@
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
 
+  programs.steam.enable = true;
+
   # programs.hyprland.enable = true;
   # programs.quickshell.enable = true;
   
@@ -38,6 +40,7 @@
     (python3.withPackages (ps: with ps; [ requests ]))
 
     # must have tools
+    input-leap
     nix-index
     openssl
     unzip

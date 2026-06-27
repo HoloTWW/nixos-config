@@ -4,7 +4,6 @@
         # desktop apps
         vscode
         firefox
-        steam
         obsidian
         libreoffice
         thunar
@@ -43,5 +42,6 @@
         pipewire
         pulseaudio
         pamixer
+        
     ];
 }
