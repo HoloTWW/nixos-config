@@ -51,12 +51,10 @@ in
     nixreb = "sudo nixos-rebuild switch --flake /home/irykov/nixos-config/.";
     hmreb = "home-manager switch --flake /home/irykov/nixos-config/. -b backup";
   };
-  
+
   home = {
     username = "irykov";
     homeDirectory = "/home/irykov";
     stateVersion = "25.11";
   };
-
-
 }

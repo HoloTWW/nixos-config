@@ -1,7 +1,7 @@
 {
     imports = [
         ./bluetooth.nix
-        ./boot.nix
+	./huawei-es8336-sound.nix
         
         ./env.nix
         ./nm.nix

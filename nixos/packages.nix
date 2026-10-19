@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = ["python-2.7.18.8" "electron-25.9.0"];
@@ -9,6 +9,8 @@
     # or specifically for electron apps:
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
+
+  programs.steam.enable = true;
   
   environment.systemPackages = with pkgs; [
     
@@ -35,6 +37,7 @@
     (python3.withPackages (ps: with ps; [ requests ]))
 
     # must have tools
+    input-leap
     nix-index
     openssl
     unzip
@@ -45,6 +48,12 @@
     zip
     git
     gh
+
+    alsa-utils
+    sof-firmware
+
+    # remote-control streaming
+    rustdesk-flutter
     
     
     # bluetooth protocol

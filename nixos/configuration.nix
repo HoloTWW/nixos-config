@@ -8,6 +8,40 @@
       ./modules/bundle.nix
     ];
 
+  # Великий фикс проклятых драйверов спикеров на huawei d15 bob-wai9
+  hardware.huaweiEs8336Sound.enable = true;
+
+  programs.throne = {
+    enable = true;
+    tunMode.enable = true;
+  };
+
+  # -- Управляю ноутом
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = true;
+      PermitRootLogin = "yes";
+    };
+  };
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
+  };
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      # Запрещаем отключать питание для переходника Naxiang (35b5:3500)
+      USB_EXCLUDE_IDS = "35b5:3500";
+    };
+  };
+
   # Bootloader UEFI.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -19,8 +53,14 @@
       pkgs.xdg-desktop-portal-gtk 
     ];
     config.common.default = [ "hyprland" "gtk" ];
+    # Явно укажем использование hyprland для ввода, если возможно
     config.hyprland.default = [ "hyprland" "gtk" ];
   };
+
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
+  networking.firewall.allowedTCPPorts = [ 24800 8080 22];
 
 
   # Flake
