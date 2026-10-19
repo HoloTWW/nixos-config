@@ -72,9 +72,11 @@
     quickshell
     xdg-desktop-portal-hyprland
     seatd
+    jq
 
     # big boy
     home-manager
+    protonup-qt
 
     # dependences 
     libsForQt5.qtstyleplugin-kvantum

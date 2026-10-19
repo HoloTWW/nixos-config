@@ -1,65 +1,61 @@
 import QtQuick
+import Quickshell
+import Quickshell.Io
 
-pragma Singleton 
+pragma Singleton
 
 QtObject {
-    readonly property var icons: ({
-        "Яндекс Музыка": "",
-        "Yandex Music": "",
-        "Visual Studio Code": "",
-        "Code": " ",
-        "Mozilla Firefox": "",
-        "Firefox": "",
-        "Firefox Web Browser": "",
-        "Google Chrome": "",
-        "Brave": "",
-        "Chromium": "",
-        "Helix": "", 
-        "Foot": "",
-        "Alacritty": "",
-        "Kitty": "",
-        "Telegram": "",
-        "Discord": "",
-        "Spotify": "",
-        "GIMP": "",
-        "Inkscape": "",
-        "Obsidian": "󰠮",
-        "empty_workspace": "",
-        "file_manager":"",
-        "Thunar": "󰝰",
-        "Thunar": "󰝰",
-        "Dolphin": "󰝰",
-        "Files": "󰝰",
-        "Desktop" : " ",
-        "LibreOffice Base": "",
-        "LibreOffice Calc":"",
-        "LibreOffice Draw":"",
-        "LibreOffice Impress":"",
-        "LibreOffice Math":"",
-        "LibreOffice Writer":""
+    property var appRegistry: ({})
+    property var exceptions: ({})
 
-    })
-
-    // idk why this stuff install with only russian title 
-
-    readonly property var ruNames: ({
-        "Яндекс Музыка": "Yandex Music",
-        "yandex-music": "Yandex Music",
-        "firefox" : "Firefox",
-        "собираем музыку для вас": "Yandex Music",
-        "thunar" : "Thunar"
-    })
-
-    function getAppName(title) {
-        if (!title) return "Desktop";
-        
-        let parts = title.split(/ [—|-] /);
-        let line = parts[parts.length - 1].trim();
-
-        return ruNames[line] || line;
+    property FileView configFile: FileView {
+        path: Qt.resolvedUrl("./apps.json")
+        blockLoading: true
+        onLoaded: {
+            try { appRegistry = JSON.parse(this.text() || "{}"); } catch (e) {}
+        }
     }
 
-    function getIcon(name){
-        return icons[name] || "󰡯"
+    property FileView exceptionsFile: FileView {
+        path: Qt.resolvedUrl("./appex.json")
+        blockLoading: true
+        onLoaded: {
+            try { exceptions = JSON.parse(this.text() || "{}"); } catch (e) {}
+        }
+    }
+
+    function getWindowData(toplevel) {
+        if (!toplevel || !toplevel.wayland) return null;
+        
+        const appId = toplevel.wayland.appId.toLowerCase();
+        const rawTitle = toplevel.title || "";
+
+        for (let prefix in exceptions) {
+            if (appId.startsWith(prefix.toLowerCase())) {
+                return {
+                    "title": formatTitle(rawTitle),
+                    "icon": exceptions[prefix] 
+                };
+            }
+        }
+
+        if (appRegistry && appRegistry[appId]) {
+            return {
+                "title": appRegistry[appId].title,
+                "icon": appRegistry[appId].icon
+            };
+        }
+
+        return { "title": formatTitle(rawTitle), "icon": "" };
+    }
+
+    function formatTitle(title) {
+        if (!title) return "Desktop";
+        let parts = title.split(/ [—|-] /);
+        let name = parts[parts.length - 1].trim();
+        if (!name) return title;
+        
+        let finalName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+        return finalName.length > 40 ? finalName.substring(0, 40) + "..." : finalName;
     }
 }

@@ -5,7 +5,9 @@
         
         ./env.nix
         ./nm.nix
+        ./nvidia.nix
         ./sound.nix
         ./user.nix
+        ./zapret.nix
     ];
 }

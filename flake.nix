@@ -8,9 +8,19 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    pixie-sddm = {
+      url = "github:xCaptaiN09/pixie-sddm";
+      flake = false; # just theme not nix project
+    };
+
+    zapret = {
+      url = "github:kartavkun/zapret-discord-youtube";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, zapret, ... }@inputs:
     let 
       system = "x86_64-linux";
     in {
@@ -18,7 +28,10 @@
         inherit system;
         
         specialArgs = { inherit inputs; };
-        modules = [ ./nixos/configuration.nix ];
+        modules = [ 
+          ./nixos/configuration.nix
+          zapret.nixosModules.default 
+          ];
       };
 
       homeConfigurations.irykov = home-manager.lib.homeManagerConfiguration {

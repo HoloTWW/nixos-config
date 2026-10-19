@@ -11,12 +11,18 @@ let
     "hypr/hyprland.conf"
     "hypr/hyprlock.conf"
     "hypr/configs/binds.conf"
+    "hypr/configs/binds/gesture.conf"
+    "hypr/configs/binds/window.conf"
+    "hypr/configs/binds/workspace.conf"
     "hypr/configs/env.conf"
     "hypr/configs/execs.conf"
     "hypr/configs/input.conf"
     "hypr/configs/theme.conf"
     "hypr/configs/windowrules.conf"
     "hypr/configs/workspaces.conf"
+
+    "hypr/scripts/record-gif.sh"
+    "hypr/scripts/toggle-empty.sh"
   ];
 in
 {

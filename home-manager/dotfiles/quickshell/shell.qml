@@ -4,9 +4,15 @@ import QtQuick
 import "bar"
 import "config"
 import "menu"
+import "notify"
 
 ShellRoot {
     id: root
+
+    NotificationBar {}
+
+    TopMenu {}
+
 
     Bar { 
         id: lBar; 
