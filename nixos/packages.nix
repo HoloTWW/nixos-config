@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = ["python-2.7.18.8" "electron-25.9.0"];
@@ -11,9 +11,6 @@
     };
 
   programs.steam.enable = true;
-
-  # programs.hyprland.enable = true;
-  # programs.quickshell.enable = true;
   
   environment.systemPackages = with pkgs; [
     
@@ -51,6 +48,12 @@
     zip
     git
     gh
+
+    alsa-utils
+    sof-firmware
+
+    # remote-control streaming
+    rustdesk-flutter
     
     
     # bluetooth protocol
