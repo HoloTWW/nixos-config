@@ -9,7 +9,10 @@
     ];
 
   # Великий фикс проклятых драйверов спикеров на huawei d15 bob-wai9
-  hardware.huaweiEs8336Sound.enable = true;
+  # hardware.huaweiEs8336Sound.enable = true;
+
+  # comment it if not virtual
+  virtualisation.vmware.guest.enable = true;
 
   programs.throne = {
     enable = true;
@@ -57,8 +60,8 @@
     config.hyprland.default = [ "hyprland" "gtk" ];
   };
 
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
+  #services.gvfs.enable = true;
+  #services.udisks2.enable = true;
 
   networking.firewall.allowedTCPPorts = [ 24800 8080 22];
 

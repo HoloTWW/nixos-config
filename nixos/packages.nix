@@ -5,7 +5,7 @@
   };
 
   environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
+    NIXOS_OZONE_WL = "0";
     # or specifically for electron apps:
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };

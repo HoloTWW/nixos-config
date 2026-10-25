@@ -25,6 +25,7 @@
         lux      # download video
         lazygit  # git tui
         cava     # tui audio-v
+        foot
         
 
         # wallpaper daemon 

@@ -9,5 +9,7 @@
         ./sound.nix
         ./user.nix
         ./zapret.nix
+
+	./vmware.nix
     ];
 }

@@ -99,7 +99,41 @@ PopupWindow {
                 NumberAnimation { duration: 300; easing.type: Easing.OutCubic }
             }
 
-            WallpaperCarousel {id:carousel}
+            Rectangle {
+                id: modeToggle
+                width: 120
+                height: 30
+                radius: 15
+                color: Qt.rgba(1, 1, 1, 0.08)
+                border.width: 1
+                border.color: Qt.rgba(1, 1, 1, 0.14)
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.margins: 12
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: carousel.isCarouselMode = !carousel.isCarouselMode
+                    cursorShape: Qt.PointingHandCursor
+                }
+
+                Text {
+                    anchors.centerIn: parent
+                    text: carousel.isCarouselMode ? "Carousel" : "Cards"
+                    color: "white"
+                    font.pixelSize: 12
+                    font.bold: true
+                }
+            }
+
+            WallpaperCarousel {
+                id: carousel
+                anchors.top: modeToggle.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                anchors.topMargin: 8
+            }
 
         }
     }
